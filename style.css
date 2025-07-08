@@ -44,7 +44,7 @@ body {
 }
 
 .chat-window {
-  height: 360px;
+  height: 500px; /* Increased height for more space */
   border: 1px solid #231f20; /* L'Oréal's dark gray */
   padding: 20px;
   font-size: 18px;
@@ -54,27 +54,38 @@ body {
   white-space: pre-line;
   border-radius: 8px; /* Rounded corners for a modern look */
   font-style: normal; /* Ensure default font style is normal */
+  display: flex;
+  flex-direction: column; /* Stack messages vertically */
+  gap: 10px; /* Add spacing between messages */
 }
 
 /* messages */
 .msg {
-  margin-bottom: 14px;
+  max-width: 70%; /* Limit message width */
+  padding: 10px 14px;
+  border-radius: 20px; /* Rounded corners for bubble effect */
   line-height: 1.5;
+  word-wrap: break-word; /* Ensure long words wrap */
 }
 
 .msg.user {
-  color: #231f20; /* L'Oréal's dark gray */
-  font-weight: 500;
+  align-self: flex-end; /* Align user messages to the right */
+  background-color: #231f20; /* L'Oréal's dark gray */
+  color: #ffffff; /* White text for user messages */
 }
 
 .msg.ai {
-  color: #231f20; /* Neutral gray for AI messages */
+  align-self: flex-start; /* Align AI messages to the left */
+  background-color: #f1f1f1; /* Light gray for AI messages */
+  color: #231f20; /* Dark gray text for AI messages */
 }
 
 /* Loading message styling */
 .msg.ai.loading {
   color: #999999; /* Lighter grey for loading message */
   font-style: italic; /* Ensure it remains italicized */
+  background-color: transparent; /* No bubble for loading message */
+  padding: 0; /* Remove padding for loading message */
 }
 
 /* Bold and italic text formatting */
@@ -168,4 +179,51 @@ body {
 
 .site-footer a:hover {
   color: #555555; /* Slightly lighter gray for hover effect */
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 600px), (max-height: 775px) {
+  .page-wrapper {
+    width: 100%; /* Use full width for smaller screens */
+    padding: 10px; /* Add padding for better spacing */
+  }
+
+  .chat-window {
+    height: 300px; /* Adjust height for smaller screens */
+    font-size: 16px; /* Slightly smaller font size */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .msg {
+    max-width: 90%; /* Increase message width for smaller screens */
+    padding: 8px 12px; /* Adjust padding for bubbles */
+  }
+
+  .chat-form {
+    flex-direction: column; /* Stack input and button vertically */
+    gap: 8px; /* Reduce gap between input and button */
+  }
+
+  .chat-form input {
+    font-size: 16px; /* Adjust font size for input */
+    padding: 10px; /* Adjust padding for input */
+  }
+
+  .chat-form button {
+    width: 100%; /* Make button full width */
+    height: auto; /* Adjust height */
+    font-size: 16px; /* Adjust font size for button */
+  }
+
+  .site-header {
+    padding-top: 30px; /* Reduce top padding */
+  }
+
+  .site-title {
+    font-size: 20px; /* Adjust title font size */
+  }
+
+  .site-logo {
+    max-width: 200px; /* Reduce logo size */
+  }
 }
