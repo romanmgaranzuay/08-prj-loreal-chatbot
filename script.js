@@ -9,6 +9,15 @@ chatWindow.textContent = "👋 Hello! How can I help you today?";
 // Track if it's the first message
 let isFirstMessage = true;
 
+// Array to store the conversation context
+const conversationContext = [
+  {
+    role: "system",
+    content:
+      "You are a helpful skincare and haircare advisor for L'Oréal products. You MUST only answer questions about beauty routines, skincare products, haircare products, and makeup advice. If someone asks about anything else (politics, sports, food, general topics, etc.), politely redirect them back to beauty topics by saying 'I can only help with skincare, haircare, and beauty advice. What would you like to know about your beauty routine?' Stay focused on beauty and L'Oréal product recommendations only.",
+  },
+];
+
 /* Function to format text with bold and italics */
 function formatMessageText(text) {
   // Replace **text** with <strong>text</strong> for bold
@@ -32,6 +41,9 @@ chatForm.addEventListener("submit", async (e) => {
     isFirstMessage = false;
   }
 
+  // Add user message to the conversation context
+  conversationContext.push({ role: "user", content: userMessage });
+
   // Display user message in chat window
   chatWindow.innerHTML += `<div class="msg user"><strong>You:</strong> ${formatMessageText(
     userMessage
@@ -46,7 +58,7 @@ chatForm.addEventListener("submit", async (e) => {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 
   try {
-    // Send user message to the API
+    // Send the conversation context to the API
     const response = await fetch(
       "https://lorealpracticebot.romanmgaranzuay.workers.dev/",
       {
@@ -54,14 +66,7 @@ chatForm.addEventListener("submit", async (e) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "gpt-4o", // Specify the model
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are a helpful skincare and haircare advisor for L'Oréal products. You MUST only answer questions about beauty routines, skincare products, haircare products, and makeup advice. If someone asks about anything else (politics, sports, food, general topics, etc.), politely redirect them back to beauty topics by saying 'I can only help with skincare, haircare, and beauty advice. What would you like to know about your beauty routine?' Stay focused on beauty and L'Oréal product recommendations only.",
-            },
-            { role: "user", content: userMessage },
-          ],
+          messages: conversationContext, // Send the full conversation context
           max_completion_tokens: 800,
         }),
       }
@@ -72,9 +77,12 @@ chatForm.addEventListener("submit", async (e) => {
     // Remove loading message
     chatWindow.removeChild(loadingMessage);
 
-    // Display AI response in chat window
+    // Get AI response and add it to the conversation context
     const aiMessage =
       data.choices[0]?.message?.content || "Sorry, I couldn't understand that.";
+    conversationContext.push({ role: "assistant", content: aiMessage });
+
+    // Display AI response in chat window
     chatWindow.innerHTML += `<div class="msg ai">${formatMessageText(
       aiMessage
     )}</div>`;
