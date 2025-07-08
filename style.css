@@ -9,6 +9,7 @@
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   color: #333;
+  background-color: #f8f8f8; /* Light background for a clean look */
   display: flex;
   justify-content: center;
 }
@@ -25,9 +26,16 @@ body {
 }
 
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
+  color: #231f20; /* L'Oréal's dark gray */
   margin-bottom: 10px;
+}
+
+/* Logo styling */
+.site-logo {
+  max-width: 250px;
+  margin-bottom: 20px;
 }
 
 /* chat window */
@@ -37,13 +45,15 @@ body {
 
 .chat-window {
   height: 360px;
-  border: 1px solid #000;
+  border: 1px solid #231f20; /* L'Oréal's dark gray */
   padding: 20px;
   font-size: 18px;
   line-height: 1.5;
   overflow-y: auto;
-  background: #fafafa;
+  background: #ffffff; /* White background for contrast */
   white-space: pre-line;
+  border-radius: 8px; /* Rounded corners for a modern look */
+  font-style: normal; /* Ensure default font style is normal */
 }
 
 /* messages */
@@ -53,11 +63,27 @@ body {
 }
 
 .msg.user {
-  color: #000;
+  color: #231f20; /* L'Oréal's dark gray */
+  font-weight: 500;
 }
 
 .msg.ai {
-  color: #666666;
+  color: #231f20; /* Neutral gray for AI messages */
+}
+
+/* Loading message styling */
+.msg.ai.loading {
+  color: #999999; /* Lighter grey for loading message */
+  font-style: italic; /* Ensure it remains italicized */
+}
+
+/* Bold and italic text formatting */
+.msg strong {
+  font-weight: bold; /* Ensure bold text is emphasized */
+}
+
+.msg em {
+  font-style: italic; /* Ensure italic text is emphasized */
 }
 
 /* input row */
@@ -72,16 +98,17 @@ body {
   padding: 12px;
   border: 1px solid #ccc;
   font-size: 18px;
+  border-radius: 4px; /* Slightly rounded corners */
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
+  outline: 2px solid #231f20; /* L'Oréal's dark gray */
   outline-offset: 2px;
 }
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
+  background: #231f20; /* L'Oréal's dark gray */
   color: #fff;
   border: none;
   padding: 12px;
@@ -92,6 +119,7 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: background 0.3s;
+  border-radius: 4px; /* Rounded corners */
 }
 
 .chat-form button .material-icons {
@@ -99,11 +127,11 @@ body {
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: #555555; /* Slightly lighter gray for hover effect */
 }
 
 .chat-form button:focus {
-  outline: 2px solid #000;
+  outline: 2px solid #231f20;
   outline-offset: 2px;
 }
 
@@ -134,10 +162,10 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: #000;
+  color: #231f20; /* L'Oréal's dark gray */
   text-decoration: none;
 }
 
 .site-footer a:hover {
-  color: #666666;
+  color: #555555; /* Slightly lighter gray for hover effect */
 }
