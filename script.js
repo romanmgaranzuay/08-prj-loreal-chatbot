@@ -53,7 +53,8 @@ chatForm.addEventListener("submit", async (e) => {
   // Show loading message
   const loadingMessage = document.createElement("div");
   loadingMessage.className = "msg ai loading"; // Add 'loading' class for lighter grey
-  loadingMessage.innerHTML = "<em>One moment while I think about your question...</em>";
+  loadingMessage.innerHTML =
+    "<em>One moment while I think of a response...</em>";
   chatWindow.appendChild(loadingMessage);
   chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -83,7 +84,7 @@ chatForm.addEventListener("submit", async (e) => {
     conversationContext.push({ role: "assistant", content: aiMessage });
 
     // Display AI response in chat window
-    chatWindow.innerHTML += `<div class="msg ai">${formatMessageText(
+    chatWindow.innerHTML += `<div class="msg ai"><strong>L'Oreal:</strong> ${formatMessageText(
       aiMessage
     )}</div>`;
   } catch (error) {
@@ -91,7 +92,7 @@ chatForm.addEventListener("submit", async (e) => {
     chatWindow.removeChild(loadingMessage);
 
     // Handle errors
-    chatWindow.innerHTML += `<div class="msg ai">Oops! Something went wrong. Please try again later.</div>`;
+    chatWindow.innerHTML += `<div class="msg ai"><strong>L'Oreal:</strong> Oops! Something went wrong. Please try again later.</div>`;
   }
 
   // Scroll to the latest message

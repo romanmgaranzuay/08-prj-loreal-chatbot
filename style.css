@@ -9,7 +9,7 @@
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   color: #333;
-  background-color: #f8f8f8; /* Light background for a clean look */
+  background-color: #e3a63541; /* Light background for a clean look */
   display: flex;
   justify-content: center;
 }
@@ -30,6 +30,16 @@ body {
   font-weight: 700;
   color: #231f20; /* L'Oréal's dark gray */
   margin-bottom: 10px;
+  position: relative; /* Position relative for underline */
+}
+
+.site-title::after {
+  content: "";
+  display: block;
+  width: 300px; /* Width of the underline */
+  height: 4px; /* Thickness of the underline */
+  background-color: #ff003b; /* Red color for underline */
+  margin: 8px auto 0; /* Center the underline and add spacing */
 }
 
 /* Logo styling */
